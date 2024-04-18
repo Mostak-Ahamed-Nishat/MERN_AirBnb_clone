@@ -11,7 +11,7 @@ export default function Navbar({}: Props) {
     <div className="fixed w-full bg-white z-10 shadow-sm">
       <div className="py-4 border-[1px]">
         <Container>
-          <div className="flex flex-row items-center justify-between gap-3 md:gap-0 ">
+          <div className="flex flex-row items-center justify-between gap-3 md:gap-2 sm:gap-0 ">
             <Logo />
             <Search />
             <UserMenu />
