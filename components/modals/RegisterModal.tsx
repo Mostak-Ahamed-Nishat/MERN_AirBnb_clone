@@ -10,6 +10,7 @@ import Heading from "../Heading";
 import Input from "../inputs/Input";
 import { toast } from "react-hot-toast";
 import Button from "../navbar/Button";
+import { signIn } from "next-auth/react";
 
 function RegisterModal() {
   //Hooks

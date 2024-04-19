@@ -14,40 +14,35 @@ datasource db {
 }
 
 model User {
-  id             String    @id @default(auto()) @map("_id") @db.ObjectId
+  id             String        @id @default(auto()) @map("_id") @db.ObjectId
   name           String?
-  email          String?   @unique
+  email          String?       @unique
   emailVerified  DateTime?
   image          String?
   hashedPassword String?
-  createdAt      DateTime  @default(now())
-  updatedAt      DateTime  @updatedAt
-  favouriteIds   String[]  @db.ObjectId
-
-  // user can have multiple accounts like google,github login
-  accounts     Account[]
-  //Listing of Proparties
-  listings     Listing[]
-  //User can have multiple reservations
-  reservations Reservation[]
+  createdAt      DateTime      @default(now())
+  updatedAt      DateTime      @updatedAt
+  favoriteIds    String[]      @db.ObjectId
+  accounts       Account[]
+  listings       Listing[]
+  reservations   Reservation[]
 }
 
 model Account {
-  id                String  @id @default(auto()) @map("_id") @db.ObjectId
-  userId            String  @db.ObjectId
-  type              String
-  provider          String
-  providerAccountId String
-  refresh_token     String? @db.ObjectId
-  access_token      String? @db.ObjectId
-  expires_at        Int?
-  token_type        String?
-  scope             String?
-  id_token          String? @db.String
-  session_state     String?
-
-  //Referancing the user id to the account id
-  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  id                       String  @id @default(auto()) @map("_id") @db.ObjectId
+  userId                   String  @db.ObjectId
+  type                     String
+  provider                 String
+  providerAccountId        String
+  refresh_token            String? @db.String
+  access_token             String? @db.String
+  expires_at               Int?
+  token_type               String?
+  scope                    String?
+  id_token                 String? @db.String
+  refresh_token_expires_in Int?
+  session_state            String?
+  user                     User    @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@unique([provider, providerAccountId])
 }
@@ -60,23 +55,23 @@ model Listing {
   createdAt     DateTime      @default(now())
   category      String
   roomCount     Int
+  bathroomCount Int
   guestCount    Int
   locationValue String
   userId        String        @db.ObjectId
   price         Int
   user          User          @relation(fields: [userId], references: [id], onDelete: Cascade)
-  //Every listing can have multiple reservation
   reservations  Reservation[]
 }
 
 model Reservation {
   id         String   @id @default(auto()) @map("_id") @db.ObjectId
-  userId     String?  @db.ObjectId
-  listingId  String?  @db.ObjectId
+  userId     String   @db.ObjectId
+  listingId  String   @db.ObjectId
   startDate  DateTime
   endDate    DateTime
   totalPrice Int
   createdAt  DateTime @default(now())
-  user       User?    @relation(fields: [userId], references: [id], onDelete: Cascade)
-  listing    Listing? @relation(fields: [listingId], references: [id], onDelete: Cascade)
+  user       User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  listing    Listing  @relation(fields: [listingId], references: [id], onDelete: Cascade)
 }
