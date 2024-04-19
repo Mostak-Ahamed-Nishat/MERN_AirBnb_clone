@@ -4,12 +4,14 @@ import { AiOutlineMenu } from "react-icons/ai";
 import Avatar from "../Avatar";
 import MenuItem from "./MenuItem";
 import RegisterModal from "../modals/RegisterModal";
-import userRegisterModal from "@/hooks/useRegisterModal";
+import userRegisterModal from "@/app/hooks/useRegisterModal";
+import useLoginModal from "@/app/hooks/useLoginModal";
 type Props = {};
 
 function UserMenu({}: Props) {
   const [isOpen, setIsOpen] = useState(false);
   const registerModal = userRegisterModal();
+  const loginModal = useLoginModal();
 
   // const toggleOpen = useCallback(() => {
   //   setIsOpen((value: boolean) => !value);
@@ -39,7 +41,13 @@ function UserMenu({}: Props) {
         <div className="absolute rounded-xl shadow-md w-[40vw] md:w-3/4 bg-slate-200 overflow-hidden right-0 top-12 text-sm  mt-[5px]">
           <div className="flex flex-col cursor-pointer">
             <>
-              <MenuItem onClick={() => {}} label="Login" />
+              <MenuItem
+                onClick={() => {}}
+                label="Login"
+                onClick={() => {
+                  loginModal.onOpen();
+                }}
+              />
               <MenuItem
                 onClick={() => {
                   registerModal.onOpen();
