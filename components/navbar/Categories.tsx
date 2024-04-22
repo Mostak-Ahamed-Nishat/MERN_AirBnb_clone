@@ -99,7 +99,7 @@ export const categories = [
 
 type Props = {};
 
-function Categories({}: Props) {
+const Categories = ({}: Props) => {
   const params = useSearchParams();
   const category = params?.get("category");
   //get the path name from url
@@ -127,6 +127,6 @@ function Categories({}: Props) {
       </div>
     </Container>
   );
-}
+};
 
 export default Categories;

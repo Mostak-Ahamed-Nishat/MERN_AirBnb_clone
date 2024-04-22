@@ -1,5 +1,5 @@
 "use client";
-import userRegisterModal from "@/app/hooks/useRegisterModal";
+import useRegisterModal from "@/app/hooks/useRegisterModal";
 import axios from "axios";
 import { useCallback, useState } from "react";
 import { AiFillGithub } from "react-icons/ai";
@@ -11,12 +11,24 @@ import Input from "../inputs/Input";
 import { toast } from "react-hot-toast";
 import Button from "../navbar/Button";
 import { signIn } from "next-auth/react";
+import useLoginModal from "@/app/hooks/useLoginModal";
 
 function RegisterModal() {
-  //Hooks
-  const registerModal = userRegisterModal();
+  //Register modal
+  const registerModal = useRegisterModal();
+  // Login Modal
+  const loginModal=useLoginModal()
+
   //Check is loading state
   const [isLoading, setIsLoading] = useState(false);
+
+  //Toggle modal
+  const toggle = useCallback(() => {
+    registerModal.onClose();
+    loginModal.onOpen();
+  }, [loginModal, registerModal]);
+
+
 
   //React form field
   const {
@@ -109,7 +121,7 @@ function RegisterModal() {
           Already have an account?
           <span
             // onClick={onToggle}
-            onClick={registerModal.onClose}
+            onClick={toggle}
             className="
               text-neutral-800
               cursor-pointer 

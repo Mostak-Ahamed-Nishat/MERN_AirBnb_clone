@@ -9,6 +9,7 @@ import { Toaster } from "react-hot-toast";
 import LoginModal from "@/components/modals/LoginModal";
 import getCurrentUser from "./actions/getCurrentUser";
 import { useSession } from "next-auth/react";
+import RentModal from "@/components/modals/RentModal";
 
 const font = Nunito({ subsets: ["latin"] });
 
@@ -31,6 +32,7 @@ export default async function RootLayout({
         <Toaster />
         <RegisterModal />
         <LoginModal />
+        <RentModal/>
         <Navbar currentUser={currentUser} />
         {/* </ClientOnly> */}
         {children}
