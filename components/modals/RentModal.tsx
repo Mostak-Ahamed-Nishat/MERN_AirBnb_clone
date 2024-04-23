@@ -1,11 +1,13 @@
 "use client";
 import useRentModal from "@/app/hooks/useRentModal";
 import Modal from "./Modal";
+import dynamic from "next/dynamic";
 import { useMemo, useState } from "react";
 import Heading from "../Heading";
 import { categories } from "../navbar/Categories";
 import CategoryInput from "../inputs/CategoryInput";
 import { FieldValues, useForm } from "react-hook-form";
+import CountrySelect from "../inputs/CountrySelect";
 
 //Initial value
 enum STEPS {
@@ -53,6 +55,14 @@ const RentModal = () => {
   const bathroomCount = watch("bathroomCount");
   const imageSrc = watch("imageSrc");
 
+  const Map = useMemo(
+    () =>
+      dynamic(() => import("../Map"), {
+        ssr: false,
+      }),
+    [location]
+  );
+
   //set the custom value to the form
   const setCustomValue = (id: string, value: any) => {
     setValue(id, value, {
@@ -82,7 +92,7 @@ const RentModal = () => {
   }, [step]);
 
   //***Secondary Action label***
-  const secondActionLabel = useMemo(() => {
+  const secondaryActionLabel = useMemo(() => {
     //if the category is not selected then return undefined
     if (step === STEPS.CATEGORY) {
       return undefined;
@@ -116,15 +126,40 @@ const RentModal = () => {
     </div>
   );
 
+  if (step === STEPS.LOCATION) {
+    bodyContent = (
+      <div className="flex flex-col gap-8">
+        <Heading
+          title="Where is your place located?"
+          subtitle="Help guests find you!"
+        />
+        <CountrySelect
+          value={location}
+          onChange={(value) => setCustomValue("location", value)}
+        />
+        {/* <Map center={location?.latlng} /> */}
+      </div>
+    );
+  }
+
+  if (step === STEPS.INFO) {
+    bodyContent = (
+      <div className="flex flex-col gap-8">
+        <Heading title="Where is your place located?" subtitle="INFORMATION" />
+      </div>
+    );
+  }
+
   return (
     <Modal
       isOpen={rentModal.isOpen}
       onClose={rentModal.onClose}
-      onSubmit={rentModal.onClose}
+      onSubmit={onNext}
       actionLabel={actionLabel}
       secondaryAction={step === STEPS.CATEGORY ? undefined : onBack}
       title="Airbnb your home"
       body={bodyContent}
+      secondaryActionLabel={secondaryActionLabel}
     />
   );
 };
