@@ -11,17 +11,16 @@ export type CountrySelectValue = {
   value: string;
 };
 
-interface CountrySelectProps {
+type Props = {
   value?: CountrySelectValue;
   onChange: (value: CountrySelectValue) => void;
-}
+};
 
-const CountrySelect: React.FC<CountrySelectProps> = ({ value, onChange }) => {
+function CountrySelect({ value, onChange }: Props) {
   const { getAll } = useCountries();
 
   return (
     <div>
-      {/* use the select option from the select package */}
       <Select
         placeholder="Anywhere"
         isClearable
@@ -54,6 +53,6 @@ const CountrySelect: React.FC<CountrySelectProps> = ({ value, onChange }) => {
       />
     </div>
   );
-};
+}
 
 export default CountrySelect;
