@@ -32,7 +32,7 @@ const RentModal = () => {
   const [step, setStep] = useState(STEPS.CATEGORY);
 
   //Loading state
-  const [isLoading, setIsloading] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   //Router
 
@@ -257,17 +257,22 @@ const RentModal = () => {
   }
 
   //Submit handler
-
   const onSubmit: SubmitHandler<FieldValues> = (data) => {
     if (step !== STEPS.PRICE) {
       return onNext();
     }
 
+    //Submit the form 
     axios.post("/api/listings", data).then(() => {
+      //if successful the show toast success message
       toast.success("Listings added successfully");
+      //refresh the homepage
       router.refresh();
+      //Reset the form after submit
       reset();
+      //Set the modal step from start
       setStep(STEPS.CATEGORY)
+      //Close the modal
       rentModal.onClose()
     }).catch(()=>{
       toast.error('Listing create failed')
