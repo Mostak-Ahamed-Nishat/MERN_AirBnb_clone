@@ -1,10 +1,10 @@
 import axios from "axios";
 import { useRouter } from "next/navigation";
-import { useCallback, useMemo } from "react";
+import { useCallback, useEffect, useMemo } from "react";
 
 import useLoginModel from "./useLoginModal";
 import { SafeUser } from "../types/index";
-import {toast} from "react-hot-toast";
+import { toast } from "react-hot-toast";
 
 type Props = {
   listingId: string;
@@ -34,13 +34,14 @@ function useFavorite({ listingId, currentUser }: Props) {
 
         if (hasFavorite) {
           request = () => axios.delete(`/api/favorites/${listingId}`);
+          toast.error("Favorite Removed");
         } else {
           request = () => axios.post(`/api/favorites/${listingId}`);
+          toast.success("Favorite Added");
         }
 
         await request();
         router.refresh();
-        toast.success("Success");
       } catch (error: any) {
         toast.error("Something Went Wrong");
       }

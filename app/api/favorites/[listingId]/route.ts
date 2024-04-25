@@ -67,8 +67,14 @@ export async function DELETE(
   //Get the previous favorite id form the user favorite list
   let favoriteIds = [...(currentUser.favoriteIds || [])];
 
+  console.log("Previous Favorite");
+  console.log(favoriteIds);
+
   //remove the favorite from the list
   favoriteIds = favoriteIds.filter((id) => id !== listingId);
+
+  console.log("After Filter Favorite");
+  console.log(favoriteIds);
 
   //Send the updated favorite list to the db
   const user = await prisma.user.update({

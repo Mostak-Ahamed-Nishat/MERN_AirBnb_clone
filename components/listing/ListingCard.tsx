@@ -30,7 +30,7 @@ function ListingCard({
   const router = useRouter();
   const { getByValue } = useCountries();
 
-  // //as storing the location as country value get the location by value
+  // as storing the location as country value get the location by value
   const location = getByValue(data?.locationValue);
 
   const handleCancel = useCallback(
