@@ -1,6 +1,7 @@
 //Server to DB communication
 
 import prisma from "@/app/libs/prismadb";
+import EmptyState from "@/components/EmptyState";
 
 interface IParams {
   listingId?: string;
@@ -11,7 +12,7 @@ export default async function getListingById(params: IParams) {
     //Get the id parameter
     const { listingId } = params;
 
-    //Find the listing from DB by ID
+    //Find the listing from DB by ID and also get owner profile data by user:true
     const listing = await prisma.listing.findUnique({
       where: {
         id: listingId,
