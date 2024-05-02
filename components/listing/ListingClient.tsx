@@ -59,8 +59,7 @@ function ListingClient({ reservations = [], listing, currentUser }: Props) {
 
   const [isLoading, setIsLoading] = useState(false);
   const [totalPrice, setTotalPrice] = useState(listing.price);
-  // const [dateRange, setDateRange] = useState<Range>(initialDateRange);
-  const [dateRange, setDateRange] = useState(initialDateRange);
+  const [dateRange, setDateRange] = useState<Range>(initialDateRange);
 
   //***Make your reservation
   const onCreateReservation = useCallback(() => {
@@ -81,7 +80,8 @@ function ListingClient({ reservations = [], listing, currentUser }: Props) {
       .then(() => {
         toast.success("Reservation Success");
         setDateRange(initialDateRange);
-        router.push("/trips");
+        router.refresh();
+        
       })
       .catch(() => {
         toast.error("Reservation Went Wrong");
@@ -130,6 +130,17 @@ function ListingClient({ reservations = [], listing, currentUser }: Props) {
               bathroomCount={listing.bathroomCount}
               locationValue={listing.locationValue}
             />
+            <div className="order-first mb-10 md:order-last md:col-span-3">
+              <ListingReservation
+                price={listing.price}
+                totalPrice={totalPrice}
+                onChangeDate={(value) => setDateRange(value)}
+                dateRange={dateRange}
+                onSubmit={onCreateReservation}
+                disabled={isLoading}
+                disabledDates={disableDates}
+              />
+            </div>
           </div>
         </div>
       </div>

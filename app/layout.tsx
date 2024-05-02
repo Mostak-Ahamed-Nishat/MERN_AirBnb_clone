@@ -4,7 +4,7 @@ import "./globals.css";
 import { Nunito } from "next/font/google";
 import RegisterModal from "@/components/modals/RegisterModal";
 import ToasterProvider from "@/providers/ToasterProvider";
-// import ClientOnly from "@/components/ClientOnly";
+import ClientOnly from "@/components/ClientOnly";
 import { Toaster } from "react-hot-toast";
 import LoginModal from "@/components/modals/LoginModal";
 import getCurrentUser from "./actions/getCurrentUser";
@@ -29,16 +29,14 @@ export default async function RootLayout({
     <html lang="en">
       <body className={font.className}>
         {/* <ClientOnly> */}
-        <Toaster />
-        <RegisterModal />
-        <LoginModal />
-        <RentModal/>
-        <Navbar currentUser={currentUser} />
+          <Toaster />
+          <RegisterModal />
+          <LoginModal />
+          <RentModal />
+          <Navbar currentUser={currentUser} />
         {/* </ClientOnly> */}
-        
-        <div className="pb-20 pt-28">
-          {children}
-        </div>
+
+        <div className="pb-20 pt-28">{children}</div>
       </body>
     </html>
   );
