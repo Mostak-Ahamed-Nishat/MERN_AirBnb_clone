@@ -18,4 +18,4 @@ export async function postPage(postId) {
   );
 }
 
-export default NewUserForm;
+export default postPage;
