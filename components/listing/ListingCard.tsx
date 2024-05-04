@@ -7,6 +7,8 @@ import React, { useCallback, useMemo } from "react";
 import Image from "next/image";
 import HeartButton from "../HeartButton";
 import Button from "../navbar/Button";
+import { format } from "date-fns";
+
 
 type Props = {
   data: safeListing;
