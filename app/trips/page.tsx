@@ -2,11 +2,11 @@ import ClientOnly from "@/components/ClientOnly";
 import EmptyState from "@/components/EmptyState";
 import getReservations from "../actions/getReservations";
 import getCurrentUser from "@/app/actions/getCurrentUser";
-import TripClient from "@/components/trip/TripClient";
+import TripClient from "@/app/trips/TripClient";
 
 const TripPage = async () => {
   //Get the loggedin user
-  const currentUser = getCurrentUser();
+  const currentUser = await getCurrentUser();
 
   //If not auth user
   if (!currentUser) {

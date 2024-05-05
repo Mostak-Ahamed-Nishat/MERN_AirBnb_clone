@@ -1,9 +1,9 @@
 "use client";
 
 import { SafeReservation, SafeUser } from "@/app/types";
-import Container from "../Container";
-import Heading from "../Heading";
-import ListingCard from "../listing/ListingCard";
+import Container from "../../components/Container";
+import Heading from "../../components/Heading";
+import ListingCard from "../../components/listing/ListingCard";
 import { useCallback, useState } from "react";
 import axios from "axios";
 import toast from "react-hot-toast";
