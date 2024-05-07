@@ -16,7 +16,6 @@ type Props = {
 
 // eslint-disable-next-line @next/next/no-async-client-component
 const ReservationsClient = async ({ reservations, currentUser }: Props) => {
-  
   const router = useRouter();
   const [deletingId, setDeletingId] = useState("");
 
@@ -27,7 +26,7 @@ const ReservationsClient = async ({ reservations, currentUser }: Props) => {
       axios
         .delete(`/api/reservations/${id}`)
         .then(() => {
-          toast.info("Reservation cancelled");
+          toast.error("Reservation cancelled");
           router.refresh();
         })
         .catch((error) => {
