@@ -10,6 +10,7 @@ import LoginModal from "@/components/modals/LoginModal";
 import getCurrentUser from "./actions/getCurrentUser";
 import { useSession } from "next-auth/react";
 import RentModal from "@/components/modals/RentModal";
+import SearchModal from "@/components/modals/SearchModal";
 
 const font = Nunito({ subsets: ["latin"] });
 
@@ -29,11 +30,12 @@ export default async function RootLayout({
     <html lang="en">
       <body className={font.className}>
         {/* <ClientOnly> */}
-          <Toaster />
-          <RegisterModal />
-          <LoginModal />
-          <RentModal />
-          <Navbar currentUser={currentUser} />
+        <Toaster />
+        <RegisterModal />
+        <SearchModal />
+        <LoginModal />
+        <RentModal />
+        <Navbar currentUser={currentUser} />
         {/* </ClientOnly> */}
 
         <div className="pb-20 pt-28">{children}</div>
