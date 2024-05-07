@@ -31,16 +31,7 @@ const ListingHead: React.FC<ListingHearProps> = ({
         title={title}
         subtitle={`${location?.region}, ${location?.label}`}
       />
-      <div
-        initial={{ opacity: 0, scale: 0.5 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{
-          duration: 0.8,
-          delay: 0.5,
-          ease: [0, 0.71, 0.2, 1.01],
-        }}
-        className="w-full h-[60vh] overflow-hidden rounded-xl relative"
-      >
+      <div className="w-full h-[60vh] overflow-hidden rounded-xl relative">
         <Image
           src={imageSrc}
           alt="image"
