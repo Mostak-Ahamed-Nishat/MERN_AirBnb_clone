@@ -9,7 +9,6 @@ import HeartButton from "../HeartButton";
 import Button from "../navbar/Button";
 import { format } from "date-fns";
 
-
 type Props = {
   data: safeListing;
   reservation?: SafeReservation;
@@ -104,7 +103,7 @@ function ListingCard({
         {onAction && actionLabel && (
           <Button
             disabled={disabled}
-            small
+            small={false}
             label={actionLabel}
             onClick={handleCancel}
           />
