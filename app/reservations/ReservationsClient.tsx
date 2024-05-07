@@ -27,7 +27,7 @@ const ReservationsClient = async ({ reservations, currentUser }: Props) => {
       axios
         .delete(`/api/reservations/${id}`)
         .then(() => {
-          toast.info("Reservation cancelled");
+          toast.error("Reservation cancelled");
           router.refresh();
         })
         .catch((error) => {
