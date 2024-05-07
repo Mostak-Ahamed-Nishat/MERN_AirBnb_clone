@@ -106,7 +106,6 @@ const UserMenu: React.FC<UserMenuProps> = ({ currentUser }) => {
             ) : (
               <>
                 <MenuItem
-                  onClick={() => {}}
                   label="Login"
                   onClick={() => {
                     loginModal.onOpen();
