@@ -52,6 +52,7 @@ function SearchModal({}: Props) {
   };
 
   //OnClick next button
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   const onNext = () => {
     setStep((value) => value + 1);
   };
