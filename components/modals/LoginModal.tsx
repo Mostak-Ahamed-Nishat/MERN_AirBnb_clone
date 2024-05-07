@@ -68,7 +68,6 @@ function LoginModal() {
     <div className="flex flex-col gap-4">
       <Heading title="Welcome Back" subtitle="Login to your Account" />
 
-      <p>nishat@gmail.com</p>
       <Input
         id="email"
         label="Email"
