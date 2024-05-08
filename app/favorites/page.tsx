@@ -1,8 +1,9 @@
 import EmptyState from "@/components/EmptyState";
-import React from "react";
+import React, { Suspense } from "react";
 import getCurrentUser from "../actions/getCurrentUser";
 import getFavoriteListings from "../actions/getFavoriteListings";
 import FavoritesClient from "./FavoritesClient";
+import Loading from "@/components/Loading";
 
 type Props = {};
 
@@ -23,7 +24,11 @@ const FavoritePage = async (props: Props) => {
     );
   }
 
-  return <FavoritesClient listings={listings} currentUser={currentUser} />;
+  return (
+    <Suspense fallback={<Loading />}>
+      <FavoritesClient listings={listings} currentUser={currentUser} />;
+    </Suspense>
+  );
 };
 
 export default FavoritePage;
