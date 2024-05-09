@@ -4,6 +4,9 @@ import getListings, { IListingsParams } from "./actions/getListings";
 import getCurrentUser from "./actions/getCurrentUser";
 import ListingCard from "@/components/listing/ListingCard";
 
+
+// npx prisma generate && next build
+
 interface HomeProps {
   searchParams: IListingsParams;
 }

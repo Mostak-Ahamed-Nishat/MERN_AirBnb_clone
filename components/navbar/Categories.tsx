@@ -18,6 +18,8 @@ import { MdOutlineVilla } from "react-icons/md";
 import { TbBeach, TbMountain, TbPool } from "react-icons/tb";
 import Container from "../Container";
 import CategoryBox from "../CategoryBox";
+import { Suspense } from "react";
+import Loading from "../Loading";
 
 export const categories = [
   {
@@ -115,16 +117,18 @@ const Categories = ({}: Props) => {
 
   return (
     <Container>
-      <div className="pt-4 flex flex-row items-center justify-between overflow-x-auto">
-        {categories.map((items, index) => (
-          <CategoryBox
-            key={index}
-            icon={items.icon}
-            label={items.label}
-            selected={category === items.label}
-          />
-        ))}
-      </div>
+      <Suspense fallback={<Loading />}>
+        <div className="pt-4 flex flex-row items-center justify-between overflow-x-auto">
+          {categories.map((items, index) => (
+            <CategoryBox
+              key={index}
+              icon={items.icon}
+              label={items.label}
+              selected={category === items.label}
+            />
+          ))}
+        </div>
+      </Suspense>
     </Container>
   );
 };
