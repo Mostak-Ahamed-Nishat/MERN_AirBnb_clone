@@ -60,7 +60,7 @@ export default async function getListings(params: IListingsParams) {
       query.locationValue = locationValue;
     }
 
-    //(march 23- march 24) if any single day even available then show that room, 
+    //(march 23- march 24) if any single day even available then show that room,
     if (startDate && endDate) {
       query.NOT = {
         reservations: {

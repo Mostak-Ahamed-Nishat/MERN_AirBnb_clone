@@ -11,6 +11,8 @@ import getCurrentUser from "./actions/getCurrentUser";
 import { useSession } from "next-auth/react";
 import RentModal from "@/components/modals/RentModal";
 import SearchModal from "@/components/modals/SearchModal";
+import Loading from "@/components/Loading";
+import { Suspense } from "react";
 
 const font = Nunito({ subsets: ["latin"] });
 
@@ -38,7 +40,9 @@ export default async function RootLayout({
         <Navbar currentUser={currentUser} />
         {/* </ClientOnly> */}
 
-        <div className="pb-20 pt-28">{children}</div>
+        <div className="pb-20 pt-28">
+          <Suspense fallback={<Loading />}>{children}</Suspense>
+        </div>
       </body>
     </html>
   );
