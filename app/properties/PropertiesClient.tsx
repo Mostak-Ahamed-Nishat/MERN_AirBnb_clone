@@ -4,10 +4,11 @@ import { SafeUser, safeListing } from "@/app/types";
 import Container from "../../components/Container";
 import Heading from "../../components/Heading";
 import ListingCard from "../../components/listing/ListingCard";
-import { useCallback, useState } from "react";
+import { Suspense, useCallback, useState } from "react";
 import axios from "axios";
 import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
+import Loading from "@/components/Loading";
 
 interface PropertiesClientProps {
   listings: safeListing[];
@@ -45,22 +46,24 @@ const PropertiesClient: React.FC<PropertiesClientProps> = ({
   );
 
   return (
-    <Container>
-      <Heading title="Properties" subtitle="List your properties" />
-      <div className="mt-10 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4 2xl:grid-cols-5 gap-8">
-        {listings.map((listing) => (
-          <ListingCard
-            key={listing.id}
-            data={listing}
-            actionId={listing.id}
-            onAction={onCancel}
-            disabled={deletingId === listing.id}
-            actionLabel="Delete Property"
-            currentUser={currentUser}
-          />
-        ))}
-      </div>
-    </Container>
+    <Suspense fallback={<Loading />}>
+      <Container>
+        <Heading title="Properties" subtitle="List your properties" />
+        <div className="mt-10 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4 2xl:grid-cols-5 gap-8">
+          {listings.map((listing) => (
+            <ListingCard
+              key={listing.id}
+              data={listing}
+              actionId={listing.id}
+              onAction={onCancel}
+              disabled={deletingId === listing.id}
+              actionLabel="Delete Property"
+              currentUser={currentUser}
+            />
+          ))}
+        </div>
+      </Container>
+    </Suspense>
   );
 };
 export default PropertiesClient;

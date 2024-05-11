@@ -3,8 +3,7 @@ import EmptyState from "@/components/EmptyState";
 import getReservations from "../actions/getReservations";
 import getCurrentUser from "@/app/actions/getCurrentUser";
 import TripClient from "@/app/trips/TripClient";
-import { Suspense } from "react";
-import Loading from "@/components/Loading";
+
 
 const TripPage = async () => {
   //Get the loggedin user
@@ -33,11 +32,9 @@ const TripPage = async () => {
   }
 
   return (
-    <Suspense fallback={<Loading />}>
-      <ClientOnly>
-        <TripClient reservations={reservations} currentUser={currentUser} />
-      </ClientOnly>
-    </Suspense>
+    <ClientOnly>
+      <TripClient reservations={reservations} currentUser={currentUser} />
+    </ClientOnly>
   );
 };
 export default TripPage;

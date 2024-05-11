@@ -2,8 +2,6 @@ import ReservationsClient from "./ReservationsClient";
 import getCurrentUser from "@/app/actions/getCurrentUser";
 import getReservations from "@/app/actions/getReservations";
 import EmptyState from "@/components/EmptyState";
-import Loading from "@/components/Loading";
-import { Suspense } from "react";
 
 const ReservationPage = async () => {
   const currentUser = await getCurrentUser();
@@ -27,12 +25,7 @@ const ReservationPage = async () => {
   }
 
   return (
-    <Suspense fallback={<Loading />}>
-      <ReservationsClient
-        reservations={reservations}
-        currentUser={currentUser}
-      />
-    </Suspense>
+    <ReservationsClient reservations={reservations} currentUser={currentUser} />
   );
 };
 

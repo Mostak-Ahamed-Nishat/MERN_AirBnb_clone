@@ -3,9 +3,8 @@ import getListingById from "@/app/actions/getListingById";
 import getReservations from "@/app/actions/getReservations";
 import EmptyState from "@/components/EmptyState";
 import ListingClient from "@/components/listing/ListingClient";
-import React, { Suspense } from "react";
+import React from "react";
 import { SafeReservation } from "../../types/index";
-import Loading from "@/components/Loading";
 
 interface IParams {
   listingId?: string;
@@ -24,13 +23,11 @@ const ListingPage = async ({ params }: { params: IParams }) => {
   }
 
   return (
-    <Suspense fallback={<Loading />}>
-      <ListingClient
-        listing={listing}
-        currentUser={currentUser}
-        reservations={reservations}
-      />
-    </Suspense>
+    <ListingClient
+      listing={listing}
+      currentUser={currentUser}
+      reservations={reservations}
+    />
   );
 };
 

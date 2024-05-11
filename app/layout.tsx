@@ -3,12 +3,11 @@ import Navbar from "../components/navbar/Navbar";
 import "./globals.css";
 import { Nunito } from "next/font/google";
 import RegisterModal from "@/components/modals/RegisterModal";
-// import ToasterProvider from "@/providers/ToasterProvider";
-import ClientOnly from "@/components/ClientOnly";
+
 import { Toaster } from "react-hot-toast";
 import LoginModal from "@/components/modals/LoginModal";
 import getCurrentUser from "./actions/getCurrentUser";
-import { useSession } from "next-auth/react";
+
 import RentModal from "@/components/modals/RentModal";
 import SearchModal from "@/components/modals/SearchModal";
 import Loading from "@/components/Loading";

@@ -12,7 +12,6 @@ function loading() {
         height={28}
         width={28}
       /> */}
-      {/* <span className=" text-xl ">Loading....</span> */}
     </div>
   );
 }
