@@ -2,7 +2,7 @@ import EmptyState from "@/components/EmptyState";
 import React from "react";
 import getCurrentUser from "../actions/getCurrentUser";
 import getFavoriteListings from "../actions/getFavoriteListings";
-import FavoritesClient from "./FavoritesClient";
+import FavoritesClient from "../../components/FavoritesClient";
 
 type Props = {};
 

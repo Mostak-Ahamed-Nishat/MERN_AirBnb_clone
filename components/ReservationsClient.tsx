@@ -1,42 +1,37 @@
 "use client";
 
-import { SafeReservation, SafeUser } from "@/app/types";
-import Container from "../../components/Container";
-import Heading from "../../components/Heading";
-import ListingCard from "../../components/listing/ListingCard";
-import { Suspense, useCallback, useState } from "react";
 import axios from "axios";
-import toast from "react-hot-toast";
+import { SafeReservation, SafeUser } from "../app/types/index";
 import { useRouter } from "next/navigation";
+import { Suspense, useCallback, useState } from "react";
+import toast from "react-hot-toast";
+import Container from "@/components/Container";
+import Heading from "@/components/Heading";
+import ListingCard from "@/components/listing/ListingCard";
 import Loading from "@/components/Loading";
 
-interface TripClientProps {
+type Props = {
   reservations: SafeReservation[];
   currentUser?: SafeUser | null;
-}
+};
 
-const TripClient: React.FC<TripClientProps> = ({
-  reservations,
-  currentUser,
-}) => {
+// eslint-disable-next-line @next/next/no-async-client-component
+const ReservationsClient = async ({ reservations, currentUser }: Props) => {
   const router = useRouter();
-
   const [deletingId, setDeletingId] = useState("");
 
-  //On reservation cancel
   const onCancel = useCallback(
     (id: string) => {
-      //Set the id to be deleted
       setDeletingId(id);
 
       axios
         .delete(`/api/reservations/${id}`)
         .then(() => {
-          toast.success("Your reservation has been canceled");
+          toast.error("Reservation cancelled");
           router.refresh();
         })
-        .catch((err) => {
-          toast.error(err?.response?.data?.error);
+        .catch((error) => {
+          toast.error(error?.response?.data?.error);
         })
         .finally(() => {
           setDeletingId("");
@@ -48,10 +43,7 @@ const TripClient: React.FC<TripClientProps> = ({
   return (
     <Suspense fallback={<Loading />}>
       <Container>
-        <Heading
-          title="Trips"
-          subtitle="Where you've been and where you're going "
-        />
+        <Heading title="Reservations" subtitle="Bookings on your properties" />
         <div className="mt-10 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4 2xl:grid-cols-5 gap-8">
           {reservations.map((reservation) => (
             <ListingCard
@@ -70,4 +62,5 @@ const TripClient: React.FC<TripClientProps> = ({
     </Suspense>
   );
 };
-export default TripClient;
+
+export default ReservationsClient;

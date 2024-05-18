@@ -1,37 +1,42 @@
 "use client";
 
-import axios from "axios";
-import { SafeReservation, SafeUser } from "../types/index";
-import { useRouter } from "next/navigation";
+import { SafeReservation, SafeUser } from "@/app/types";
+import Container from "./Container";
+import Heading from "./Heading";
+import ListingCard from "./listing/ListingCard";
 import { Suspense, useCallback, useState } from "react";
+import axios from "axios";
 import toast from "react-hot-toast";
-import Container from "@/components/Container";
-import Heading from "@/components/Heading";
-import ListingCard from "@/components/listing/ListingCard";
+import { useRouter } from "next/navigation";
 import Loading from "@/components/Loading";
 
-type Props = {
+interface TripClientProps {
   reservations: SafeReservation[];
   currentUser?: SafeUser | null;
-};
+}
 
-// eslint-disable-next-line @next/next/no-async-client-component
-const ReservationsClient = async ({ reservations, currentUser }: Props) => {
+const TripClient: React.FC<TripClientProps> = ({
+  reservations,
+  currentUser,
+}) => {
   const router = useRouter();
+
   const [deletingId, setDeletingId] = useState("");
 
+  //On reservation cancel
   const onCancel = useCallback(
     (id: string) => {
+      //Set the id to be deleted
       setDeletingId(id);
 
       axios
         .delete(`/api/reservations/${id}`)
         .then(() => {
-          toast.error("Reservation cancelled");
+          toast.success("Your reservation has been canceled");
           router.refresh();
         })
-        .catch((error) => {
-          toast.error(error?.response?.data?.error);
+        .catch((err) => {
+          toast.error(err?.response?.data?.error);
         })
         .finally(() => {
           setDeletingId("");
@@ -43,7 +48,10 @@ const ReservationsClient = async ({ reservations, currentUser }: Props) => {
   return (
     <Suspense fallback={<Loading />}>
       <Container>
-        <Heading title="Reservations" subtitle="Bookings on your properties" />
+        <Heading
+          title="Trips"
+          subtitle="Where you've been and where you're going "
+        />
         <div className="mt-10 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4 2xl:grid-cols-5 gap-8">
           {reservations.map((reservation) => (
             <ListingCard
@@ -62,5 +70,4 @@ const ReservationsClient = async ({ reservations, currentUser }: Props) => {
     </Suspense>
   );
 };
-
-export default ReservationsClient;
+export default TripClient;

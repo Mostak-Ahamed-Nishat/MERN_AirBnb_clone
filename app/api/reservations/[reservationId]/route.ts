@@ -28,7 +28,7 @@ export async function DELETE(
     where: {
       id: reservationId,
       //The property owner or the user that made the reservation will be able to cancel the reservation user or listing owner
-      OR: [{ userId: currentUser.id }, { listing: { userId: currentUser.id } }],
+      OR: [{ userId: currentUser?.id }, { listing: { userId: currentUser?.id } }],
     },
   });
 

@@ -1,3 +1,5 @@
+"use server";
+
 import Container from "@/components/Container";
 import EmptyState from "@/components/EmptyState";
 import getListings, { IListingsParams } from "./actions/getListings";
@@ -14,10 +16,6 @@ interface HomeProps {
 export default async function Home({ searchParams }: HomeProps) {
   const currentUser = await getCurrentUser();
   const listing = await getListings(searchParams);
-  // const [listing, currentUser] = await Promise.all([
-  //   getListings(searchParams),
-  //   getCurrentUser(),
-  // ]);
 
   if (listing?.length == 0) {
     return (

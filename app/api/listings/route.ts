@@ -44,7 +44,7 @@ export async function POST( request: Request ) {
       guestCount,
       locationValue: location.value,
       price: parseInt(price, 10),
-      userId: currentUser.id,
+      userId: currentUser?.id,
     },
   });
 

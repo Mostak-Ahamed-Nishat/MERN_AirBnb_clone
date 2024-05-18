@@ -2,7 +2,7 @@ import Container from "@/components/Container";
 import Heading from "@/components/Heading";
 import ListingCard from "@/components/listing/ListingCard";
 
-import { safeListing, SafeUser } from "../types/index";
+import { safeListing, SafeUser } from "../app/types/index";
 
 type Props = {
   listings: safeListing[];

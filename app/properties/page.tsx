@@ -2,7 +2,7 @@ import ClientOnly from "@/components/ClientOnly";
 import EmptyState from "@/components/EmptyState";
 import getCurrentUser from "@/app/actions/getCurrentUser";
 import getListings from "../actions/getListings";
-import PropertiesClient from "./PropertiesClient";
+import PropertiesClient from "../../components/listing/PropertiesClient";
 
 const PropertiesPage = async () => {
   //Get the loggedin user
