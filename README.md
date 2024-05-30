@@ -15,8 +15,8 @@ A Full Stack Airbnb Clone with Next.js 14. To develope technology used: Tailwind
   - [Prerequisites](#prerequisites)
   - [Run Locally](#run-locally)
   - [Environment Variables](#environment-variables)
-  - [Deployemnt](#deployment)
-- [**Contact**](#contact)
+  - [Deployemnt](#deployemnt)
+- [**Author**](#author)
 
 
 
@@ -109,7 +109,7 @@ To deploy this project run
 [Deploy on Vercel](https://vercel.com/)
 
 
-## Authors
+## Author
 
 - [@Md Mostak Ahamed](https://github.com/Mostak-Ahamed-Nishat/)
 
