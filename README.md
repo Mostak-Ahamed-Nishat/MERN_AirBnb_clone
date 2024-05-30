@@ -9,7 +9,7 @@ A Full Stack Airbnb Clone with Next.js 14. To develope technology used: Tailwind
 ## 📖 Table of Contents
 
 - [**About the project**](#about-the-project)
-  - [Screenshots](#heading)
+  - [Screenshots](#screenshots)
   - [Technologies](#technologies)
 - [**Getting Start**](#getting-start)
   - [Prerequisites](#prerequisites)
@@ -22,6 +22,11 @@ A Full Stack Airbnb Clone with Next.js 14. To develope technology used: Tailwind
 
 ## 📜 About the project
 
+
+### Screenshots
+![Screenshot 2024-05-31 002550](https://github.com/Mostak-Ahamed-Nishat/MERN_AirBnb_clone/assets/37589801/5ade8d65-f618-4ba4-9a9d-54f999c01bc3)
+
+![iPhone-12-PRO-nextbnb-amber vercel app](https://github.com/Mostak-Ahamed-Nishat/MERN_AirBnb_clone/assets/37589801/c8a1de17-69c5-4eb2-a339-0c111ae5101c)
 
 
 ## 👨‍💻Technologies
